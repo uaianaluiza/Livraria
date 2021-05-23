@@ -15,9 +15,9 @@ import javax.persistence.Table
      @GeneratedValue(IDENTITY)
     val id: Long?,
     @Column
-    var name: String,
+    var nome: String,
     @Column
-    var nameautor: String,
+    var nomeAutor: String,
     @Column
     var anoDePublicacao: String,
 
