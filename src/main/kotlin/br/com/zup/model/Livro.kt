@@ -4,7 +4,6 @@ import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GenerationType.*
 import javax.persistence.Table
 
 @Entity
@@ -12,7 +11,7 @@ import javax.persistence.Table
  data class Livro(
 
     @Id
-     @GeneratedValue(IDENTITY)
+    @GeneratedValue
     val id: Long?,
     @Column
     var nome: String,
