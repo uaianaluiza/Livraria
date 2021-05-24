@@ -1,11 +1,11 @@
 package br.com.zup.services
 
+import br.com.zup.exceptions.LivroNaoEncontradoException
 import br.com.zup.model.Livro
 import br.com.zup.repositories.LivroRepository
-import java.lang.RuntimeException
 import javax.inject.Inject
 
-class LivroServiceImpl (@Inject private var livroRepository: LivroRepository)
+class LivroServiceImpl @Inject constructor( private var livroRepository: LivroRepository)
     :LivroService{
 
 
@@ -14,14 +14,15 @@ class LivroServiceImpl (@Inject private var livroRepository: LivroRepository)
     }
 
     override fun getAll():List<Livro> {
-        return livroRepository.findAll()
+        return livroRepository.findAll().toList()
     }
 
     override fun delete(id: Long) {
-        if (livroRepository.existsById(id)){
+
+        if (livroRepository.findById(id).isPresent){
             livroRepository.deleteById(id)
         }else{
-          throw RuntimeException ("Livro não encontrado")
+          throw LivroNaoEncontradoException()
         }
     }
 
@@ -31,6 +32,6 @@ class LivroServiceImpl (@Inject private var livroRepository: LivroRepository)
         if (livro.isPresent){
             return livro.get()
         }
-        throw RuntimeException ("Livro não encontrado")
+        throw LivroNaoEncontradoException()
     }
     }
