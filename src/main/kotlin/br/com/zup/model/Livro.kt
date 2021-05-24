@@ -1,24 +1,21 @@
 package br.com.zup.model
 
-import io.micronaut.data.annotation.GeneratedValue
-import io.micronaut.data.annotation.Id
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+
+import javax.persistence.*
 
 @Entity
 @Table(name = "Livros")
  data class Livro(
 
     @Id
-    @GeneratedValue
+    @javax.persistence.GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
     @Column
-    var nome: String,
+    val nome: String,
     @Column
-    var nomeAutor: String,
+    val nomeAutor: String,
     @Column
-    var anoDePublicacao: String,
+    val anoDePublicacao: String,
 
     ){
      constructor(): this(null,"","","")

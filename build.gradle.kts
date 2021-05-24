@@ -17,7 +17,7 @@ repositories {
 
 micronaut {
     runtime("netty")
-    testRuntime("junit5")
+    testRuntime("kotest")
     processing {
         incremental(true)
         annotations("br.com.zup.*")
@@ -32,8 +32,6 @@ dependencies {
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("javax.annotation:javax.annotation-api")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.h2database:h2")
     implementation("io.micronaut:micronaut-validation")
@@ -63,4 +61,7 @@ tasks {
     }
 
 
+test {
+    useJUnitPlatform()
+}
 }
