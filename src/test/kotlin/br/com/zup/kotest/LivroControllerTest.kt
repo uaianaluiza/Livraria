@@ -9,22 +9,24 @@ import io.micronaut.test.extensions.kotest.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.mockk
 
+
 @MicronautTest
 class LivroControllerTest: AnnotationSpec() {
+
     val service = mockk<LivroService>()
     val livroController = LivroController(service)
+    lateinit var livro : Livro
 
-    lateinit var livro: Livro
     @BeforeEach
     fun setUp(){
 
-       livro= Livro(1L,"nome","nomeautor","2019")
+       livro = Livro(1L,"nome","nomeautor","2019")
 
     }
     @Test
-    fun `save livro`(){
-        every { service.send(any()) } answers { livro}
-        val result= livroController.adicionarLivro(livro)
+    fun save(){
+        every { service.create(any()) } answers { livro}
+        val result= livroController.adicionarLivro(livro).body()
         result shouldBe livro
     }
 }
