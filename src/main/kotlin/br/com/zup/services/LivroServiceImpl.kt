@@ -3,9 +3,10 @@ package br.com.zup.services
 import br.com.zup.exceptions.LivroNaoEncontradoException
 import br.com.zup.model.Livro
 import br.com.zup.repositories.LivroRepository
+import javax.inject.Inject
 
 
-class LivroServiceImpl ( private var livroRepository: LivroRepository)
+class LivroServiceImpl ( @Inject private var livroRepository: LivroRepository)
     :LivroService{
 
 
