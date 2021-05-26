@@ -15,25 +15,33 @@ class LivroControllerTest: AnnotationSpec() {
 
     val service = mockk<LivroService>()
     val livroController = LivroController(service)
-    lateinit var livro : Livro
+    lateinit var livro: Livro
 
     @BeforeEach
-    fun setUp(){
+    fun setUp() {
 
-       livro = Livro(1L,"nome","nomeautor","2019")
+        livro = Livro(1L, "nome", "nomeautor", "2019")
 
     }
+
     @Test
-    fun save(){
-        every { service.create(any()) } answers { livro}
-        val result= livroController.adicionarLivro(livro).body()
+    fun save() {
+        every { service.create(any()) } answers { livro }
+        val result = livroController.adicionarLivro(livro).body()
         result shouldBe livro
     }
 
     @Test
-    fun `visualizar todos os livros`(){
-        every { service.getAll()} answers { listOf(livro)}
+    fun `visualizar todos os livros`() {
+        every { service.getAll() } answers { listOf(livro) }
         val result = livroController.visualitarTodosOsLivros().body()
         result shouldBe listOf(livro)
+    }
+
+    @Test
+    fun `testar deletar livro`() {
+        every { service.delete(any()) } answers { Unit }
+        val result = livroController.deletarLivro(1L)
+        result shouldBe Unit
     }
 }
