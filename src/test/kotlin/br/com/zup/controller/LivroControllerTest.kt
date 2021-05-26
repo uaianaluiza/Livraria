@@ -48,7 +48,7 @@ class LivroControllerTest: AnnotationSpec() {
     @Test
     fun `testar buscar livro pelo id`(){
         every { service.getById(any())} answers {livro}
-        val result = livroController.buscarLivroPeloId(1L,livro).body()
+        val result = livroController.buscarLivroPeloId(1L).body()
         result shouldBe livro
     }
 }
