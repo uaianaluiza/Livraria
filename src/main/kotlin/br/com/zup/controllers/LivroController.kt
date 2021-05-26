@@ -33,7 +33,7 @@ class LivroController (private val service: LivroService){
     @Get("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun buscarLivroPeloId(@PathVariable id:Long, @Body livro: Livro):HttpResponse<Livro>{
+    fun buscarLivroPeloId(@PathVariable id:Long):HttpResponse<Livro>{
         return HttpResponse.ok(HttpStatus.OK).body(this.service.getById(id))
     }
 }
