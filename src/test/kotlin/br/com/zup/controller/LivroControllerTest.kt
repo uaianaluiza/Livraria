@@ -1,4 +1,4 @@
-package br.com.zup.kotest
+package br.com.zup.controller
 
 import br.com.zup.controllers.LivroController
 import br.com.zup.model.Livro
@@ -28,5 +28,12 @@ class LivroControllerTest: AnnotationSpec() {
         every { service.create(any()) } answers { livro}
         val result= livroController.adicionarLivro(livro).body()
         result shouldBe livro
+    }
+
+    @Test
+    fun `visualizar todos os livros`(){
+        every { service.getAll()} answers { listOf(livro)}
+        val result = livroController.visualitarTodosOsLivros().body()
+        result shouldBe listOf(livro)
     }
 }
