@@ -7,7 +7,7 @@ import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 
-@Controller("livros/")
+@Controller("/livros")
 class LivroController (private val service: LivroService){
 
     @Post
